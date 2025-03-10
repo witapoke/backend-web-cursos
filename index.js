@@ -9,7 +9,7 @@ const Course = require('./models/CourseSchema.js')
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.send('Un video ma mi gente')
+  res.send('Un video ma mi gente, pa peldel el tiempo ')
 })
 
 mongoose.connect(connectionString).then(
