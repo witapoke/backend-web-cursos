@@ -5,6 +5,8 @@ const courseSchema = new Schema(
   {
     name: String,
     thumbnail: String,
+    description: String,
+    price: Number,
     videos: [{ title: String, videoUrl: String, duration: String }],
   },
   { timestamps: true }
