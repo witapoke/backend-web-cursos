@@ -1,14 +1,15 @@
-require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
+import 'dotenv/config'
+import express, { json } from 'express'
+import cors from 'cors'
 const app = express()
 const PORT = process.env.PORT
 const connectionString = process.env.MONGO_DB_URL
-const mongoose = require('mongoose')
-const Course = require('./models/CourseSchema.js')
+import { connect } from 'mongoose'
+import Course from './models/CourseSchema.js'
+
+app.use(json())
 
 app.use(cors())
-app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('Un video ma mi gente, pa peldel el tiempo ')
@@ -37,7 +38,7 @@ app.post('/courses', async (req, res) => {
   }
 })
 
-mongoose.connect(connectionString).then(
+connect(connectionString).then(
   app.listen(PORT, () => {
     console.log('App listening to port ' + PORT)
   })
