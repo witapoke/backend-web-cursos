@@ -1,12 +1,10 @@
 import 'dotenv/config'
-import express from 'express'
 import cors from 'cors'
-const app = express()
-const PORT = process.env.PORT
-const connectionString = process.env.MONGO_DB_URL
+import express from 'express'
 import Course from './models/CourseSchema.js'
-import mongoose from 'mongoose'
+import connectDB from './DB.js'
 
+const app = express()
 app.use(express.json())
 app.use(cors())
 
@@ -37,12 +35,6 @@ app.post('/courses', async (req, res) => {
   }
 })
 
-mongoose
-  .connect(connectionString)
-  .then(
-    app.listen(PORT, () =>
-      console.log(
-        'App listening to port ' + PORT + '. DB CONNECTED SUCCESFULLY'
-      )
-    )
-  )
+connectDB()
+
+export default app
